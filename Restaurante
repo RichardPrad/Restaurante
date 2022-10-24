@@ -1,0 +1,65 @@
+#deifinição do volume da feijoada
+def Volumefeijoada():
+    while True:
+        try:
+            volume = int(input("qual o tamanho de feijoada que deseja?")) #volume da feijoada respeitando o limite de 5l
+            if volume not in range(300, 5000):
+                print("\nDesculpe nos so aceitamos feijoadas de 300ml a 5L\n")
+            else:
+                return volume * 0.08
+                break
+        except ValueError:
+            print('Por favor insira uma quantidade entre 300ml a 5L')
+            continue
+
+
+def opcoesfeijoada(): #opçoes de feijoada disponiveis 
+    while True:
+        try:
+            opcao = float(input(
+                'Digite a opção desejada:\n1- Basica (Feijao + paiol + costelinha)\n2 - Premium (Feijao + paiol + costelinha + partes de porco)\n3 - suprema(Feijao + paiol + costelinha + partes de porco + charque + calabresa + bacon)\n4- Sair\n-->'))
+            if 1 == opcao:
+                return 1.0 #retorna o multiplicador
+            elif 2 == opcao:
+                return 1.25
+            elif 3 == opcao:
+                return 1.50
+            else:
+                print('Digite somente uma das opções do MENU')
+            continue
+        except ValueError:
+            print('Pare de digitar números que não existe...')
+    return opcao
+
+
+def acompanhamentofeijoada():
+    acumulador = 0 #adicionado um acumulador para que seja possivel a soma dos acompanhamentos
+    while True:
+        try:
+            opcaoacompanhamento = float(input('Digite a opção desejada:\n0 - Não desejo mais acompanhamentos / Encerrar pedido\n1 - 200g de Arroz \n2 - 150g de farofa especial \n3 - 100g de couve cozida \n4 - 1 laranja descascada \n-->'))
+            if opcaoacompanhamento == 0:
+                return acumulador
+            elif opcaoacompanhamento == 1:
+                acumulador = acumulador + 5
+            elif opcaoacompanhamento == 2:
+                acumulador = acumulador + 6
+            elif opcaoacompanhamento == 3:
+                acumulador = acumulador + 7
+            elif opcaoacompanhamento == 4:
+                acumulador = acumulador + 3
+            else:
+                print('Digite somente uma das opções do MENU/n')
+            continue
+        except ValueError:
+            print('Pare de digitar números que não existe...')
+    return acumulador
+
+print('Bem-vindo ao restaurante dona maria')
+
+volume = Volumefeijoada() #definindo uma varivel para soma
+opcoes = opcoesfeijoada()
+acompanhamentos = acompanhamentofeijoada()
+
+total = volume * opcoes + acompanhamentos #soma dos valores imputados
+
+print('total a pagar é de R${:.2f} (volume = {:.2f}ml * opção da feijoada = {:.2f} + acompanhamento = {}'.format(total,volume,opcoes,acompanhamentos))
